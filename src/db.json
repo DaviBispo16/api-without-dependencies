@@ -1,0 +1,24 @@
+{
+  "tasks": [
+    {
+      "id": "3f1e2d85-0dba-42c1-b493-5021eaacef34",
+      "completed_at": null,
+      "createdAt": "2024-12-10T00:34:02.211Z",
+      "updatedAt": "2024-12-10T00:34:02.211Z"
+    },
+    {
+      "id": "8302f620-adfc-4626-b3eb-f50923ab827b",
+      "completed_at": null,
+      "createdAt": "2024-12-10T00:34:14.686Z",
+      "updatedAt": "2024-12-10T00:34:14.686Z"
+    },
+    {
+      "id": "a21c67a1-c422-4f84-8815-a4b76c462dbc",
+      "title": "Doing a test",
+      "description": "The first test on the application",
+      "completed_at": null,
+      "createdAt": "2024-12-10T22:13:12.309Z",
+      "updatedAt": "2024-12-10T22:13:12.309Z"
+    }
+  ]
+}

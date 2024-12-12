@@ -38,4 +38,19 @@ export default class Database {
         this.#persist();
         return data;
     }
+
+    updateTask(table, id, data) {
+        const rowIndex = this.#database[table].findIndex((item) => item.id === id);
+        if (rowIndex > -1) {
+            const array = this.#database[table][rowIndex];
+            this.#database[table][rowIndex] = {
+                id, 
+                ...data,
+                createdAt: array.createdAt, 
+            };
+            this.#persist();
+            return data;
+        }
+        return -1;
+    }
 }

@@ -1,12 +1,13 @@
 import { randomUUID } from 'node:crypto';
 import Database from "../database.js";
 import json from '../middlewares/json.js';
+import buildRoutePath from '../utils/buildRoutePath.js';
 
 const database = new Database();
 export const routes = [
     {
         method: "GET",
-        url: "/tasks",
+        url: buildRoutePath("/tasks"),
         handler: (req, res) => {
             const tasks = database.getTasks('tasks');
             return res.writeHead(200).end(JSON.stringify(tasks));
@@ -14,7 +15,7 @@ export const routes = [
     },
     {
         method: "POST",
-        url: "/tasks",
+        url: buildRoutePath("/tasks"),
         handler: async (req, res) => {
             await json(req, res);
             const { title, description } = req.body;
@@ -33,7 +34,22 @@ export const routes = [
     },
     {
         method: "PUT",
-        url: '/tasks/'
+        url: buildRoutePath('/tasks/:id'),
+        handler: async (req, res) => {
+            await json(req, res);
+            const { title, description } = req.body;
+            const newTask = {
+                title,
+                description, 
+                completed_at: null,
+                updatedAt: new Date()
+            }  
+            const changeTask = database.updateTask('tasks', req.params, newTask);
+            if (changeTask === -1) {
+                return res.writeHead(400).end(JSON.stringify({error: `ID ${req.params} not found`}));
+            }
+            return res.writeHead(201).end(JSON.stringify(changeTask));
+        }
     }
 ]
 

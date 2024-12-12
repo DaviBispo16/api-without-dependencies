@@ -3,10 +3,12 @@ import { routes } from './routes/tasksRoutes.js';
 
 const server = http.createServer(async (req, res) => {
     const { method, url } = req;
-    const router = routes.find((item) => {
-        return item.method === method && item.url === url;
-    });
+    const router = routes.find((route) => 
+        route.method === method && route.url.test(url));
     if (router) {
+        const routeParam = req.url.match(router.path);
+        const idParams = routeParam.input.slice(7);
+        req.params = idParams;
         return router.handler(req, res);
     } else {
         console.log("Router not find");

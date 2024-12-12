@@ -17,7 +17,8 @@ export const routes = [
         method: "POST",
         url: buildRoutePath("/tasks"),
         handler: async (req, res) => {
-            await json(req, res);
+            const response = await json(req, res);
+            if (response == undefined) {
             const { title, description } = req.body;
             const createTask = {
                 id: randomUUID(),
@@ -30,6 +31,7 @@ export const routes = [
             console.log(createTask)
             database.createTask('tasks', createTask);
             return res.writeHead(201).end(JSON.stringify(createTask));
+            }
         }
     },
     {

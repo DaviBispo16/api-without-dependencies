@@ -5,6 +5,7 @@ const server = http.createServer(async (req, res) => {
     const { method, url } = req;
     const router = routes.find((route) => 
         route.method === method && route.url.test(url));
+    
     if (router) {
         const routeParam = req.url.match(router.path);
         const idParams = routeParam.input.slice(7);

@@ -36,7 +36,8 @@ export const routes = [
         method: "PUT",
         url: buildRoutePath('/tasks/:id'),
         handler: async (req, res) => {
-            await json(req, res);
+            const response = await json(req, res);
+            if (response == undefined) {
             const { title, description } = req.body;
             const newTask = {
                 title,
@@ -45,10 +46,11 @@ export const routes = [
                 updatedAt: new Date()
             }  
             const changeTask = database.updateTask('tasks', req.params, newTask);
-            if (changeTask === -1) {
+            if (changeTask == -1) {
                 return res.writeHead(400).end(JSON.stringify({error: `ID ${req.params} not found`}));
+            }     
+                return res.writeHead(201).end(JSON.stringify(changeTask));
             }
-            return res.writeHead(201).end(JSON.stringify(changeTask));
         }
     }
 ]

@@ -54,6 +54,16 @@ export const routes = [
                 return res.writeHead(201).end(JSON.stringify(changeTask));
             }
         }
+    },
+    {
+        method: "DELETE",
+        url: buildRoutePath("/tasks/:id"),
+        handler: async (req, res) => {
+            const deleteTask = database.removeTask("tasks", req.params);
+            if (deleteTask === -1) {
+                return res.writeHead(400).end(JSON.stringify({error: `ID ${req.params} not found`}));            }
+            return res.writeHead(204).end();
+        }
     }
 ]
 

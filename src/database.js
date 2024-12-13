@@ -53,4 +53,14 @@ export default class Database {
         }
         return -1;
     }
+
+    removeTask(table, id) {
+        const rowIndex = this.#database[table].findIndex((item) => item.id === id);
+        if (rowIndex > -1) {
+            this.#database[table].splice(rowIndex, 1);
+            this.#persist();
+            return 0;
+        }
+        return -1;
+    }
 }

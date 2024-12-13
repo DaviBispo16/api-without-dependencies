@@ -28,7 +28,6 @@ export const routes = [
                 createdAt: new Date(),
                 updatedAt: new Date(),
             }
-            console.log(createTask)
             database.createTask('tasks', createTask);
             return res.writeHead(201).end(JSON.stringify(createTask));
             }
@@ -61,8 +60,21 @@ export const routes = [
         handler: async (req, res) => {
             const deleteTask = database.removeTask("tasks", req.params);
             if (deleteTask === -1) {
-                return res.writeHead(400).end(JSON.stringify({error: `ID ${req.params} not found`}));            }
+                return res.writeHead(400).end(JSON.stringify({error: `ID ${req.params} not found`}));           
+            }
             return res.writeHead(204).end();
+        }
+    },
+    {
+        method: "PATCH",
+        url: buildRoutePath("/tasks/:id/complete"),
+        handler: (req, res) => {
+            const markTaskCompleted = database.markTaskAsCompleted("tasks", req.params);
+            if (markTaskCompleted === -1) {
+                return res.writeHead(400).end(JSON.stringify({error: `ID ${req.params} not found`}));           
+            }
+
+            return res.writeHead(200).end(JSON.stringify({message: 'Attribute updated successfully'}));
         }
     }
 ]

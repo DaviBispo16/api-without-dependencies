@@ -63,4 +63,15 @@ export default class Database {
         }
         return -1;
     }
+
+    markTaskAsCompleted(table, id) {
+        const itemId = id.replace('/complete', "");
+        const rowIndex = this.#database[table].findIndex((item) => item.id === itemId);
+        if (rowIndex > -1) {
+            this.#database[table][rowIndex].completed_at = new Date();
+            this.#persist();
+            return rowIndex;
+        }
+            return -1;
+    }
 }

@@ -1,7 +1,7 @@
-import fs from 'fs/promises';
-import { URL } from 'url';
+import fs from "fs/promises";
+import { URL } from "url";
 
-const databasePath = new URL('./db.json', import.meta.url);
+const databasePath = new URL("./db.json", import.meta.url);
 
 export default class Database {
     #database = {};
@@ -20,7 +20,7 @@ export default class Database {
         try {
             fs.writeFile(databasePath, JSON.stringify(this.#database, null, 2));
         } catch(error) {
-            console.log('Erro ao persistir o banco de dados');
+            console.log("Databse persistence error");
         }
     }
 
@@ -72,7 +72,7 @@ export default class Database {
     }
 
     markTaskAsCompleted(table, id) {
-        const itemId = id.replace('/complete', "");
+        const itemId = id.replace("/complete", "");
         const rowIndex = this.#database[table].findIndex((item) => item.id === itemId);
         if (rowIndex > -1) {
             this.#database[table][rowIndex].completed_at = new Date();

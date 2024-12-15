@@ -47,7 +47,6 @@ export const routes = [
                 const newTask = {
                     title,
                     description,
-                    completed_at: null,
                     updatedAt: new Date()
                 }
                 const changeTask = database.updateTask('tasks', req.params, newTask);
@@ -77,7 +76,6 @@ export const routes = [
             if (markTaskCompleted === -1) {
                 return res.writeHead(400).end(JSON.stringify({ error: `ID ${req.params} not found` }));
             }
-
             return res.writeHead(200).end(JSON.stringify({ message: "Attribute updated successfully" }));
         }
     }

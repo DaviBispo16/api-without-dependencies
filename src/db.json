@@ -1,3 +1,36 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "id": "a30b6446-0077-4040-b166-c1f185d93b3a",
+      "title": "Task 01",
+      "description": "Complete the project documentation",
+      "completed_at": null,
+      "createdAt": "2024-12-15T02:28:14.011Z",
+      "updatedAt": "2024-12-15T02:28:14.011Z"
+    },
+    {
+      "id": "cb444f16-1658-4deb-821f-87e1ff287c72",
+      "title": "Task 02",
+      "description": "Fix the bug in the user authentication module",
+      "completed_at": null,
+      "createdAt": "2024-12-15T02:28:14.021Z",
+      "updatedAt": "2024-12-15T02:28:14.021Z"
+    },
+    {
+      "id": "7e763a40-9444-4155-95ab-da2264fdb3ce",
+      "title": "Task 03",
+      "description": "Review the pull request for the new feature",
+      "completed_at": null,
+      "createdAt": "2024-12-15T02:28:14.024Z",
+      "updatedAt": "2024-12-15T02:28:14.024Z"
+    },
+    {
+      "id": "b512f7b9-4066-464a-93e0-e6e0755784be",
+      "title": "Task 04",
+      "description": "Write unit tests for the login functionality",
+      "completed_at": null,
+      "createdAt": "2024-12-15T02:28:14.027Z",
+      "updatedAt": "2024-12-15T02:28:14.027Z"
+    }
+  ]
 }

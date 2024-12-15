@@ -13,7 +13,7 @@ export const routes = [
             const search = {};
             if (title) search.title = title;
             if (description) search.description = description;
-            const tasks = database.getTasks('tasks', Object.keys(search).length > 0 ? search : null);
+            const tasks = database.getTasks("tasks", Object.keys(search).length > 0 ? search : null);
             return res.writeHead(200).end(JSON.stringify(tasks));
         },
     },
@@ -32,7 +32,7 @@ export const routes = [
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 }
-                database.createTask('tasks', createTask);
+                database.createTask("tasks", createTask);
                 return res.writeHead(201).end(JSON.stringify(createTask));
             }
         }
@@ -49,7 +49,7 @@ export const routes = [
                     description,
                     updatedAt: new Date()
                 }
-                const changeTask = database.updateTask('tasks', req.params, newTask);
+                const changeTask = database.updateTask("tasks", req.params, newTask);
                 if (changeTask == -1) {
                     return res.writeHead(400).end(JSON.stringify({ error: `ID ${req.params} not found` }));
                 }

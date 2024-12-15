@@ -24,9 +24,16 @@ export default class Database {
         }
     }
 
-    getTasks(table) {
-        const tasks = this.#database[table] ?? [];
-        return tasks;
+    getTasks(table, search) {
+        let data = this.#database[table] ?? [];
+        if (search) {
+            data = data.filter((row) =>  
+                Object.entries(search).some(([key, value]) => {
+                    if (!value) {return true};
+                    return row[key]?.toLowerCase().includes(value.toLowerCase());
+                })
+            )}
+        return data;
     }
 
     createTask(table, data) {
